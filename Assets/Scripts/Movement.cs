@@ -3,7 +3,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [Header ("Movimiento")]
-    [SerializeField] private float Speed = 5.0f;
+    public float Speed = 5.0f;
     [SerializeField] private KeyCode moveUp = KeyCode.W;
     [SerializeField] private KeyCode moveDown = KeyCode.S;
     [SerializeField] private KeyCode moveLeft = KeyCode.A;
