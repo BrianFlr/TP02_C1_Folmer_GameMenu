@@ -25,44 +25,48 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        // Movimiento del sprite
-        if (Input.GetKey(moveUp))
+        if (Time.timeScale == 1) // For isPause (Temporal)
         {
-            transform.position += new Vector3(0, Speed * Time.deltaTime, 0);
-        }
+            // Movimiento del sprite
+            if (Input.GetKey(moveUp))
+            {
+                transform.position += new Vector3(0, Speed * Time.deltaTime, 0);
+            }
 
-        if (Input.GetKey(moveDown))
-        {
-            transform.position += new Vector3(0, -Speed * Time.deltaTime, 0);
-        }
+            if (Input.GetKey(moveDown))
+            {
+                transform.position += new Vector3(0, -Speed * Time.deltaTime, 0);
+            }
 
-        if (Input.GetKey(moveLeft))
-        {
-            transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
-        }
+            if (Input.GetKey(moveLeft))
+            {
+                transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
+            }
 
-        if (Input.GetKey(moveRight))
-        {
-            transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
-        }
+            if (Input.GetKey(moveRight))
+            {
+                transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
+            }
 
-        // Rotacion del sprite
-        if (Input.GetKeyDown(rotateLeft))
-        {
-            //transform.Rotate(Vector3.forward * rotateSpeed);
-            transform.Rotate(0, 0, rotateSpeed);
-        }
+            // Rotacion del sprite
+            if (Input.GetKeyDown(rotateLeft))
+            {
+                //transform.Rotate(Vector3.forward * rotateSpeed);
+                transform.Rotate(0, 0, rotateSpeed);
+            }
 
-        if (Input.GetKeyDown(rotateRight))
-        {
-            //transform.Rotate(Vector3.forward * -rotateSpeed);
-            transform.Rotate(0, 0, -rotateSpeed);
-        }
+            if (Input.GetKeyDown(rotateRight))
+            {
+                //transform.Rotate(Vector3.forward * -rotateSpeed);
+                transform.Rotate(0, 0, -rotateSpeed);
+            }
 
-        // Cambio de color del sprite
-        if (Input.GetKeyUp(changeColor))
-        {
-            spriteRenderer.color = new Color(Random.value, Random.value, Random.value);
+            // Cambio de color del sprite
+            if (Input.GetKeyUp(changeColor))
+            {
+                spriteRenderer.color = new Color(Random.value, Random.value, Random.value);
+            }
         }
+        
     }
 }

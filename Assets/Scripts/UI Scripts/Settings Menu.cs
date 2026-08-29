@@ -1,15 +1,25 @@
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
+    [Header("Canvas")]
+    [SerializeField] private GameObject settingsCanvas;
+
+    [Header("Buttons")]
+    [SerializeField] private Button btnBack;
+
+    [Header("Sliders")]
+    [SerializeField] private Slider sliderPlayer1Speed;
+    [SerializeField] private Slider sliderPlayer2Speed;
+    [SerializeField] private TMP_Text textPlayer1Speed;
+    [SerializeField] private TMP_Text textPlayer2Speed;
+
+    [Header("Players")]
     [SerializeField] private Movement Player1;
     [SerializeField] private Movement Player2;
 
-    [SerializeField] private GameObject settingsCanvas;
-    [SerializeField] private Button btnBack;
-    [SerializeField] private Slider sliderPlayer1Speed;
-    [SerializeField] private Slider sliderPlayer2Speed;
 
     private void Awake()
     {
@@ -27,6 +37,7 @@ public class SettingsMenu : MonoBehaviour
     {
         
     }
+
     private void OnDestroy()
     {
         btnBack.onClick.RemoveAllListeners();
@@ -45,10 +56,12 @@ public class SettingsMenu : MonoBehaviour
     private void OnPlayer1SpeedChanged(float value)
     {
         Player1.Speed = value;
+        textPlayer1Speed.text = value.ToString("F2");
     }
     private void OnPlayer2SpeedChanged(float value)
     {
         Player2.Speed = value;
+        textPlayer2Speed.text = value.ToString("F2");
     }
 
 }

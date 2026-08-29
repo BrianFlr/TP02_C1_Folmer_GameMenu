@@ -4,7 +4,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [Header("Canvas")]
     [SerializeField] private GameObject mainMenuCanvas;
+
+    [Header("Buttons")]
     [SerializeField] private Button btnStart;
     [SerializeField] private Button btnSettings;
     [SerializeField] private Button btnCredits;
@@ -18,7 +21,6 @@ public class MainMenu : MonoBehaviour
         btnExit.onClick.AddListener(OnExitClicked);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
@@ -29,7 +31,6 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    // Custom Functions
     private void OnDestroy()
     {
         btnStart.onClick.RemoveAllListeners();
@@ -38,6 +39,7 @@ public class MainMenu : MonoBehaviour
         btnExit.onClick.RemoveAllListeners();
     }
 
+    // Custom Functions
     private void OnStartClicked()
     {
 

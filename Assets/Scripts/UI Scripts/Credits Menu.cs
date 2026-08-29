@@ -1,16 +1,37 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreditsMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Canvas")]
+    [SerializeField] private GameObject creditsCanvas;
+
+    [Header("Buttons")]
+    [SerializeField] private Button btnBack;
+
+    private void Awake()
+    {
+        btnBack.onClick.AddListener(OnBackClicked);
+    }
+    
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void OnDestroy()
+    {
+        btnBack.onClick.RemoveAllListeners();
+    }
+
+    // Custom Functions
+    private void OnBackClicked()
+    {
+
     }
 }
