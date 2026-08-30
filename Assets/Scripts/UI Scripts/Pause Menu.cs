@@ -1,13 +1,14 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     [Header("Canvas")]
     [SerializeField] private GameObject pauseCanvas;
-    [SerializeField] private GameObject SettingsCanvas;
+    [SerializeField] private GameObject settingsCanvas;
     [SerializeField] private GameObject creditsCanvas;
-    [SerializeField] private GameObject mainmenuCanvas;
+    [SerializeField] private GameObject mainMenuCanvas;
 
     [Header("Buttons")]
     [SerializeField] private Button btnContinue;
@@ -15,7 +16,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button btnCredits;
     [SerializeField] private Button btnExit;
 
-    private bool isPause = false;
+    public bool isPause = false;
 
     private void Awake()
     {
@@ -25,26 +26,24 @@ public class PauseMenu : MonoBehaviour
         btnExit.onClick.AddListener(OnExitClicked);
     }
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
-        // Pause Game
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        if (!mainMenuCanvas.activeSelf) // Checking if the MainMenu is active.
         {
-            isPause = !isPause;
-            pauseCanvas.SetActive(isPause);
-            
-            if (isPause)
+            // Pause Game
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
             {
-                Time.timeScale = 0;
-            }
-            else
-            {
-                Time.timeScale = 1;
+                isPause = !isPause;
+                pauseCanvas.SetActive(isPause);
+
+                if (isPause)
+                {
+                    Time.timeScale = 0;
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                }
             }
         }
     }
@@ -57,24 +56,31 @@ public class PauseMenu : MonoBehaviour
         btnExit.onClick.RemoveAllListeners();
     }
 
-    // Buttons Clicks Events
+    // Buttons events
     private void OnContinueClicked()
     {
         isPause = !isPause;
         pauseCanvas.SetActive(isPause);
         Time.timeScale = 1;
     }
-    
+
     private void OnSettingsClicked()
     {
-
+        settingsCanvas.SetActive(true);
+        pauseCanvas.SetActive(false);
     }
+
     private void OnCreditsClicked()
     {
-
+        creditsCanvas.SetActive(true);
+        pauseCanvas.SetActive(false);
     }
+
     private void OnExitClicked()
     {
+        pauseCanvas.SetActive(false);
 
+        // Reset Game
+        SceneManager.LoadScene("Scene1");
     }
 }

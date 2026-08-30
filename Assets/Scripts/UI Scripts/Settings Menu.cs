@@ -6,6 +6,9 @@ public class SettingsMenu : MonoBehaviour
 {
     [Header("Canvas")]
     [SerializeField] private GameObject settingsCanvas;
+    [SerializeField] private GameObject mainMenuCanvas;
+    [SerializeField] private GameObject pauseCanvas;
+    [SerializeField] private PauseMenu pauseState;
 
     [Header("Buttons")]
     [SerializeField] private Button btnBack;
@@ -28,20 +31,8 @@ public class SettingsMenu : MonoBehaviour
         sliderPlayer2Speed.onValueChanged.AddListener(OnPlayer2SpeedChanged);
     }
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     private void OnDestroy()
     {
-        btnBack.onClick.RemoveAllListeners();
-        btnBack.onClick.RemoveAllListeners();
         btnBack.onClick.RemoveAllListeners();
         sliderPlayer1Speed.onValueChanged.RemoveAllListeners();
         sliderPlayer2Speed.onValueChanged.RemoveAllListeners();
@@ -50,7 +41,16 @@ public class SettingsMenu : MonoBehaviour
     // Custom Functions
     private void OnBackClicked()
     {
+        settingsCanvas.SetActive(false);
 
+        if (pauseState.isPause)
+        {
+            pauseCanvas.SetActive(true);
+        }
+        else
+        {
+            mainMenuCanvas.SetActive(true);
+        }
     }
 
     private void OnPlayer1SpeedChanged(float value)
@@ -58,6 +58,7 @@ public class SettingsMenu : MonoBehaviour
         Player1.Speed = value;
         textPlayer1Speed.text = value.ToString("F2");
     }
+
     private void OnPlayer2SpeedChanged(float value)
     {
         Player2.Speed = value;

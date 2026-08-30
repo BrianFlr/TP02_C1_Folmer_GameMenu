@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +5,8 @@ public class MainMenu : MonoBehaviour
 {
     [Header("Canvas")]
     [SerializeField] private GameObject mainMenuCanvas;
+    [SerializeField] private GameObject settingsCanvas;
+    [SerializeField] private GameObject creditsCanvas;
 
     [Header("Buttons")]
     [SerializeField] private Button btnStart;
@@ -39,21 +40,27 @@ public class MainMenu : MonoBehaviour
         btnExit.onClick.RemoveAllListeners();
     }
 
-    // Custom Functions
+    // Button Events
     private void OnStartClicked()
     {
-
+        Time.timeScale = 1;
+        mainMenuCanvas.SetActive(false);
     }
+
     private void OnSettingsClicked()
     {
-
+        settingsCanvas.SetActive(true);
+        mainMenuCanvas.SetActive(false);
     }
+
     private void OnCreditsClicked()
     {
-
+        creditsCanvas.SetActive(true);
+        mainMenuCanvas.SetActive(false);
     }
+
     private void OnExitClicked()
     {
-
+        UnityEditor.EditorApplication.isPlaying = false;  
     }
 }
